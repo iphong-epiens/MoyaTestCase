@@ -12,11 +12,21 @@ import Moya
 @main
 struct MoyaTestCaseApp: App {
     var disposeBag = DisposeBag()
-    var cancellables = Set<AnyCancellable>()
     
     init() {
-        let provider = JokesAPIProvider(isStub: false)
-        
+        //apiTest()
+    }
+    
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+    
+    func apiTest() {
+        let provider = JokesAPIProvider()
+        var cancellables = Set<AnyCancellable>()
+
         provider.fetchRandomJoke(firstName: "Gildong", lastName: "Hong", categories: ["nerdy"])
             .sink(receiveCompletion: { _ in
                 
@@ -24,11 +34,6 @@ struct MoyaTestCaseApp: App {
                 print(result.joke)
             })
             .store(in: &cancellables)
-    }
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+
     }
 }

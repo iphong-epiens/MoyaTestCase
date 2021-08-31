@@ -9,6 +9,7 @@ import XCTest
 import RxMoya
 import RxSwift
 import Combine
+import Moya
 
 @testable import MoyaTestCase
 
@@ -18,18 +19,19 @@ class MoyaTestCaseTests: XCTestCase {
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        sut = JokesAPIProvider(isStub: true)
+     sut = JokesAPIProvider(isStub: true)
     }
     
     func test_fetchRandomJokes_success() {
         let expectation = XCTestExpectation()
 
-        let expectedJoke = JokesAPI
-            .randomJokes("Gro", "Hong", ["nerdy"])
-            .sampleData
-          //  .sampleDecodable(JokeReponse.self)?.value
+//        let expectedJoke = sut
+//            .fetchRandomJoke("Gro", "Hong", ["nerdy"])
+//            .sampleData
+//          //  .sampleDecodable(JokeReponse.self)?.value
 
-        print(expectedJoke)
+//        print(expectedJoke)
+        
         //RxSwift
 //        sut.fetchRandomJoke(firstName: "Gro", lastName: "Hong", categories: ["nerdy"])
 //            .subscribe(onSuccess: { joke in
@@ -39,11 +41,17 @@ class MoyaTestCaseTests: XCTestCase {
 //            .dispose()
         
         //Combine
-        sut.fetchRandomJoke(firstName: "Gro", lastName: "Hong", categories: ["nerdy"])
-            .sink(receiveCompletion: { _ in
-                
+        sut.fetchRandomJoke(firstName: "Inpyo", lastName: "Hong", categories: ["nerdy"])
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }, receiveValue: { joke in
-                XCTAssertEqual("Gro Hong can retrieve anything from /dev/null.", joke.joke)
+                print(joke)
+                XCTAssertEqual("Inpyo Hong can retrieve anything from /dev/null.", joke.joke)
                 expectation.fulfill()
             })
             .store(in: &cancellable)

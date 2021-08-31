@@ -10,7 +10,9 @@ import Moya
 
 
 enum JokeAPI {
-    case randomJokes(_ firstName: String? = nil, _ lastName: String? = nil)
+    case randomJokes(_ firstName: String? = nil,
+                     _ lastName: String? = nil,
+                     _ categories: [String] = [])
 }
 
 extension JokeAPI: TargetType {
@@ -33,9 +35,10 @@ extension JokeAPI: TargetType {
     var sampleData: Data {
         switch self {
         
-        case .randomJokes(let firstName, let lastName):
+        case .randomJokes(let firstName, let lastName, let categories):
             let firstName = firstName ?? "Chuck"
             let lastName = lastName ?? "Norris"
+            let categories = categories 
 
             return Data(
                 """
@@ -43,7 +46,8 @@ extension JokeAPI: TargetType {
                    "type": "success",
                        "value": {
                        "id": 107,
-                       "joke": "\(firstName) \(lastName) can retrieve anything from /dev/null."
+                       "joke": "\(firstName) \(lastName) can retrieve anything from /dev/null.",
+                       "categories": \(categories)
                    }
                 }
                 """.utf8
@@ -53,10 +57,11 @@ extension JokeAPI: TargetType {
   
     var task: Moya.Task {
         switch self {
-        case .randomJokes(let firstName, let lastName):
+        case .randomJokes(let firstName, let lastName, let categories):
             let params: [String: Any] = [
                 "firstName": firstName!,
-                "lastName": lastName!
+                "lastName": lastName!,
+                "categories": [categories]
             ]
 
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
