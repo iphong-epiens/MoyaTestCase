@@ -8,15 +8,14 @@
 import Foundation
 import Moya
 
-enum JokesAPI {
-    case randomJokes(_ firstName: String? = nil,
-                     _ lastName: String? = nil,
-                     _ categories: [String] = [])
+
+enum JokeAPI {
+    case randomJokes(_ firstName: String? = nil, _ lastName: String? = nil)
 }
 
-extension JokesAPI: TargetType {
+extension JokeAPI: TargetType {
     var baseURL: URL {
-        URL(string: "http://api.icndb.com")!
+        URL(string: "https://api.icndb.com")!
     }
     
     var path: String {
@@ -34,7 +33,7 @@ extension JokesAPI: TargetType {
     var sampleData: Data {
         switch self {
         
-        case .randomJokes(let firstName, let lastName, let categoris):
+        case .randomJokes(let firstName, let lastName):
             let firstName = firstName ?? "Chuck"
             let lastName = lastName ?? "Norris"
 
@@ -44,28 +43,23 @@ extension JokesAPI: TargetType {
                    "type": "success",
                        "value": {
                        "id": 107,
-                       "joke": "\(firstName) \(lastName) can retrieve anything from /dev/null.",
-                       "categories": \(categoris)
+                       "joke": "\(firstName) \(lastName) can retrieve anything from /dev/null."
                    }
                 }
                 """.utf8
             )
         }
     }
-
-    var task: Task {
+  
+    var task: Moya.Task {
         switch self {
-        case .randomJokes(let firstName, let lastName, let categories):
-            var params: [String: Any?] = [
-                "firstName": firstName,
-                "lastName": lastName
+        case .randomJokes(let firstName, let lastName):
+            let params: [String: Any] = [
+                "firstName": firstName!,
+                "lastName": lastName!
             ]
 
-            if categories.isEmpty == false {
-                params["limitTo"] = "(categories)"
-            }
-
-            return .requestParameters(parameters: params as [String : Any], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         }
     }
 }

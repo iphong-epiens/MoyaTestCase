@@ -20,10 +20,10 @@ class JokesAPIProvider: ProviderProtocol {
     }
 
     func fetchRandomJoke(firstName: String? = nil, lastName: String? = nil, categories: [String] = []) -> Single<Joke> {
-        return request(type: Joke.self, atKeyPath: "value", target: MultiTarget(JokesAPI.randomJokes(firstName, lastName, categories)))
+        return request(type: Joke.self, atKeyPath: "value", target: MultiTarget(JokeAPI.randomJokes(firstName, lastName)))
     }
     
     func fetchRandomJoke(firstName: String? = nil, lastName: String? = nil, categories: [String] = []) -> AnyPublisher<Joke,MoyaError> {
-        return request(type: Joke.self, atKeyPath: "value", target: MultiTarget(JokesAPI.randomJokes(firstName, lastName, categories)))
+        return request(type: Joke.self, atKeyPath: "value", target: MultiTarget(JokeAPI.randomJokes(firstName, lastName)))
     }
 }

@@ -24,11 +24,12 @@ class MoyaTestCaseTests: XCTestCase {
     func test_fetchRandomJokes_success() {
         let expectation = XCTestExpectation()
 
-//        let expectedJoke = JokesAPI
-//            .randomJokes("Gro", "Hong", ["nerdy"])
-//            .sampleData
-//            .sampleDecodable(JokeReponse.self)?.value
+        let expectedJoke = JokesAPI
+            .randomJokes("Gro", "Hong", ["nerdy"])
+            .sampleData
+          //  .sampleDecodable(JokeReponse.self)?.value
 
+        print(expectedJoke)
         //RxSwift
 //        sut.fetchRandomJoke(firstName: "Gro", lastName: "Hong", categories: ["nerdy"])
 //            .subscribe(onSuccess: { joke in
