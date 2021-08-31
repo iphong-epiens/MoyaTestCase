@@ -18,6 +18,9 @@
 		2EFF9CDC26DCBB730081AD6A /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 2EFF9CDB26DCBB730081AD6A /* CombineMoya */; };
 		2EFF9CDE26DCBB730081AD6A /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 2EFF9CDD26DCBB730081AD6A /* RxMoya */; };
 		2EFF9CE026DCBB730081AD6A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 2EFF9CDF26DCBB730081AD6A /* Moya */; };
+		2EFF9CEA26DDB5E40081AD6A /* JokerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF9CE926DDB5E40081AD6A /* JokerAPI.swift */; };
+		2EFF9CEC26DDB9C20081AD6A /* ProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF9CEB26DDB9C20081AD6A /* ProviderProtocol.swift */; };
+		2EFF9CEE26DDB9EE0081AD6A /* JokesAPIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF9CED26DDB9EE0081AD6A /* JokesAPIProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		2EFF9CC726DCBA9E0081AD6A /* MoyaTestCaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaTestCaseUITests.swift; sourceTree = "<group>"; };
 		2EFF9CC926DCBA9E0081AD6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EFF9CD626DCBAB80081AD6A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2EFF9CE926DDB5E40081AD6A /* JokerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokerAPI.swift; sourceTree = "<group>"; };
+		2EFF9CEB26DDB9C20081AD6A /* ProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderProtocol.swift; sourceTree = "<group>"; };
+		2EFF9CED26DDB9EE0081AD6A /* JokesAPIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesAPIProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				2EFF9CD626DCBAB80081AD6A /* Model.swift */,
+				2EFF9CE926DDB5E40081AD6A /* JokerAPI.swift */,
+				2EFF9CED26DDB9EE0081AD6A /* JokesAPIProvider.swift */,
+				2EFF9CEB26DDB9C20081AD6A /* ProviderProtocol.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -288,7 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EFF9CD726DCBAB80081AD6A /* Model.swift in Sources */,
+				2EFF9CEC26DDB9C20081AD6A /* ProviderProtocol.swift in Sources */,
 				2EFF9CAD26DCBA9D0081AD6A /* ContentView.swift in Sources */,
+				2EFF9CEA26DDB5E40081AD6A /* JokerAPI.swift in Sources */,
+				2EFF9CEE26DDB9EE0081AD6A /* JokesAPIProvider.swift in Sources */,
 				2EFF9CAB26DCBA9D0081AD6A /* MoyaTestCaseApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
