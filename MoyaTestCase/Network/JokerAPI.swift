@@ -7,6 +7,7 @@
 
 import Foundation
 import Moya
+
 enum JokesAPI {
     case randomJokes(_ firstName: String? = nil,
                      _ lastName: String? = nil,

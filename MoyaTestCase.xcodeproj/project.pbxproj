@@ -111,7 +111,8 @@
 		2EFF9CA926DCBA9D0081AD6A /* MoyaTestCase */ = {
 			isa = PBXGroup;
 			children = (
-				2EFF9CD526DCBAB00081AD6A /* Base */,
+				2EFF9CD526DCBAB00081AD6A /* Model */,
+				2EFF9D3526DDC1BA0081AD6A /* Network */,
 				2EFF9CAA26DCBA9D0081AD6A /* MoyaTestCaseApp.swift */,
 				2EFF9CAC26DCBA9D0081AD6A /* ContentView.swift */,
 				2EFF9CAE26DCBA9E0081AD6A /* Assets.xcassets */,
@@ -147,15 +148,22 @@
 			path = MoyaTestCaseUITests;
 			sourceTree = "<group>";
 		};
-		2EFF9CD526DCBAB00081AD6A /* Base */ = {
+		2EFF9CD526DCBAB00081AD6A /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				2EFF9CD626DCBAB80081AD6A /* Model.swift */,
-				2EFF9CE926DDB5E40081AD6A /* JokerAPI.swift */,
-				2EFF9CED26DDB9EE0081AD6A /* JokesAPIProvider.swift */,
 				2EFF9CEB26DDB9C20081AD6A /* ProviderProtocol.swift */,
 			);
-			path = Base;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2EFF9D3526DDC1BA0081AD6A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2EFF9CE926DDB5E40081AD6A /* JokerAPI.swift */,
+				2EFF9CED26DDB9EE0081AD6A /* JokesAPIProvider.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

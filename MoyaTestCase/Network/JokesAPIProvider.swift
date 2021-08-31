@@ -10,7 +10,6 @@ import Moya
 import RxSwift
 
 class JokesAPIProvider: ProviderProtocol {
-
     typealias T = JokesAPI
     var provider: MoyaProvider<JokesAPI>
 
