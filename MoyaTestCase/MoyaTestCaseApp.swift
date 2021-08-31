@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
-import RxSwift
 import Combine
 import Moya
+
+/*
+ iOS Networking and Testing Demo
+: https://techblog.woowahan.com/2704/
+ */
+
 @main
 struct MoyaTestCaseApp: App {
-    var disposeBag = DisposeBag()
     
     init() {
         //apiTest()
@@ -27,9 +31,9 @@ struct MoyaTestCaseApp: App {
         let provider = JokesAPIProvider()
         var cancellables = Set<AnyCancellable>()
 
-        provider.fetchRandomJoke(firstName: "Gildong", lastName: "Hong", categories: ["nerdy"])
-            .sink(receiveCompletion: { _ in
-                
+        provider.fetchRandomJoke(firstName: "Inpyo", lastName: "Hong", categories: ["nerdy"])
+            .sink(receiveCompletion: { completion in
+                print(completion)
             }, receiveValue: { result in
                 print(result.joke)
             })

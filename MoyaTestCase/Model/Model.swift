@@ -6,10 +6,6 @@
 //
 
 import Foundation
-import Moya
-import RxMoya
-import Alamofire
-import RxSwift
 
 struct JokeReponse: Decodable {
     let type: String

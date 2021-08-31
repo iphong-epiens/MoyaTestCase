@@ -25,12 +25,20 @@ class MoyaTestCaseTests: XCTestCase {
     func test_fetchRandomJokes_success() {
         let expectation = XCTestExpectation()
 
-//        let expectedJoke = sut
-//            .fetchRandomJoke("Gro", "Hong", ["nerdy"])
-//            .sampleData
-//          //  .sampleDecodable(JokeReponse.self)?.value
+        let expectedJoke = JokeAPI.randomJokes("Inpyo", "Hong", ["nerdy"]).sampleData
+           
+        guard let jokeData = try? JSONDecoder().decode(JokeReponse.self, from: expectedJoke) else {
+            return
+        }
 
-//        print(expectedJoke)
+        Just(expectedJoke)
+        .decode(type: JokeReponse.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { result in
+                print(result)
+            })
+            .store(in: &cancellable)
         
         //RxSwift
 //        sut.fetchRandomJoke(firstName: "Gro", lastName: "Hong", categories: ["nerdy"])
@@ -51,7 +59,7 @@ class MoyaTestCaseTests: XCTestCase {
                 }
             }, receiveValue: { joke in
                 print(joke)
-                XCTAssertEqual("Inpyo Hong can retrieve anything from /dev/null.", joke.joke)
+                XCTAssertEqual(jokeData.value.joke, joke.joke)
                 expectation.fulfill()
             })
             .store(in: &cancellable)
