@@ -8,11 +8,14 @@
 import XCTest
 import RxMoya
 import RxSwift
+import Combine
 
 @testable import MoyaTestCase
 
 class MoyaTestCaseTests: XCTestCase {
     var sut: JokesAPIProvider!
+    var cancellable = Set<AnyCancellable>()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         sut = JokesAPIProvider(isStub: true)
@@ -26,12 +29,24 @@ class MoyaTestCaseTests: XCTestCase {
 //            .sampleData
 //            .sampleDecodable(JokeReponse.self)?.value
 
+        //RxSwift
+//        sut.fetchRandomJoke(firstName: "Gro", lastName: "Hong", categories: ["nerdy"])
+//            .subscribe(onSuccess: { joke in
+//                XCTAssertEqual("Gro Hong can retrieve anything from /dev/null.", joke.joke)
+//                expectation.fulfill()
+//            })
+//            .dispose()
+        
+        //Combine
         sut.fetchRandomJoke(firstName: "Gro", lastName: "Hong", categories: ["nerdy"])
-            .subscribe(onSuccess: { joke in
+            .sink(receiveCompletion: { _ in
+                
+            }, receiveValue: { joke in
                 XCTAssertEqual("Gro Hong can retrieve anything from /dev/null.", joke.joke)
                 expectation.fulfill()
             })
-            .dispose()
+            .store(in: &cancellable)
+        
         wait(for: [expectation], timeout: 2.0)
     }
 
