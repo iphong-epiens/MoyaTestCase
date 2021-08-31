@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import Combine
 import Moya
 import RxSwift
+import RxMoya
+import CombineMoya
 
 public protocol ProviderProtocol: AnyObject {
     associatedtype T: TargetType
@@ -58,6 +61,13 @@ extension ProviderProtocol {
     func request<D: Decodable>(type: D.Type, atKeyPath keyPath: String? = nil, target: T) -> Single<D> {
         provider.rx.request(target)
             .map(type, atKeyPath: keyPath)
+            // some operators
+    }
+    
+    func request<D: Decodable>(type: D.Type, atKeyPath keyPath: String? = nil, target: T) -> AnyPublisher<D, MoyaError> {
+          provider.requestPublisher(target)
+            .map(type, atKeyPath: keyPath)
+            .eraseToAnyPublisher()
             // some operators
     }
 }
