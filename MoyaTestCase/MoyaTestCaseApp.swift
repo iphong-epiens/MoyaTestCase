@@ -16,9 +16,17 @@ import Moya
 
 @main
 struct MoyaTestCaseApp: App {
+    let provider = JokesAPIProvider()
+    var cancellables = Set<AnyCancellable>()
     
     init() {
-        //apiTest()
+        provider.fetchRandomJoke(firstName: "Inpyo", lastName: "Hong", categories: ["nerdy"])
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { result in
+                print(result.joke)
+            })
+            .store(in: &cancellables)
     }
     
     var body: some Scene {
@@ -27,17 +35,5 @@ struct MoyaTestCaseApp: App {
         }
     }
     
-    func apiTest() {
-        let provider = JokesAPIProvider()
-        var cancellables = Set<AnyCancellable>()
-
-        provider.fetchRandomJoke(firstName: "Inpyo", lastName: "Hong", categories: ["nerdy"])
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }, receiveValue: { result in
-                print(result.joke)
-            })
-            .store(in: &cancellables)
-
-    }
+   
 }
