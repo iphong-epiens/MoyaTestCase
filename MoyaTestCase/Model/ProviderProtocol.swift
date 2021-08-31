@@ -13,9 +13,8 @@ import RxMoya
 import CombineMoya
 
 public protocol ProviderProtocol: AnyObject {
-    associatedtype T: TargetType
-
-    var provider: MoyaProvider<T> { get }
+    associatedtype T : TargetType
+    var provider: MoyaProvider<MultiTarget> { get }
     init(isStub: Bool, sampleStatusCode: Int, customEndpointClosure: ((T) -> Endpoint)?)
 }
 
@@ -49,6 +48,7 @@ public extension ProviderProtocol {
                     httpHeaderFields: target.headers
                 )
             }
+            
             return MoyaProvider<T>(
                 endpointClosure: customEndpointClosure ?? endPointClosure,
                 stubClosure: MoyaProvider.immediatelyStub
@@ -59,13 +59,13 @@ public extension ProviderProtocol {
 
 extension ProviderProtocol {
     func request<D: Decodable>(type: D.Type, atKeyPath keyPath: String? = nil, target: T) -> Single<D> {
-        provider.rx.request(target)
+        provider.rx.request(MultiTarget(target))
             .map(type, atKeyPath: keyPath)
             // some operators
     }
     
     func request<D: Decodable>(type: D.Type, atKeyPath keyPath: String? = nil, target: T) -> AnyPublisher<D, MoyaError> {
-          provider.requestPublisher(target)
+          provider.requestPublisher(MultiTarget(target))
             .map(type, atKeyPath: keyPath)
             .eraseToAnyPublisher()
             // some operators
