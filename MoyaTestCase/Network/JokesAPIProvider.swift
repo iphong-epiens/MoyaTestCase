@@ -11,9 +11,9 @@ import RxSwift
 import Combine
 
 class JokesAPIProvider: ProviderProtocol {
-    var provider: MoyaProvider<T>
-    
     typealias T = MultiTarget
+
+    var provider: MoyaProvider<T>
 
     required init(isStub: Bool = false, sampleStatusCode: Int = 200, customEndpointClosure: ((T) -> Endpoint)? = nil) {
         provider = Self.consProvider(isStub, sampleStatusCode, customEndpointClosure)
@@ -22,7 +22,7 @@ class JokesAPIProvider: ProviderProtocol {
     func fetchRandomJoke(firstName: String? = nil, lastName: String? = nil, categories: [String] = []) -> Single<Joke> {
         return request(type: Joke.self, atKeyPath: "value", target: T(JokeAPI.randomJokes(firstName, lastName)))
     }
-    
+
     func fetchRandomJoke(firstName: String? = nil, lastName: String? = nil, categories: [String] = []) -> AnyPublisher<Joke,MoyaError> {
         return request(type: Joke.self, atKeyPath: "value", target: T(JokeAPI.randomJokes(firstName, lastName)))
     }

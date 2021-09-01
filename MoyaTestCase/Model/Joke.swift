@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  Joke.swift
 //  MoyaTestCase
 //
 //  Created by Inpyo Hong on 2021/08/30.
